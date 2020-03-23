@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 echo "Enter the number between 0 to 9 :"
 read Number
 echo "Given number $Number in words is  :"
