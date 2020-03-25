@@ -1,25 +1,27 @@
-#! /bin/bash -x
-lowerRange=1
-Temp=0
+#!/bin/bash
 
-while [ $lowerRange -eq 1 ]
+echo "Please prime number range between :"
+read -p "Enter lower range  : " Num1
+read -p "Enter upper range : " Num2
+
+for (( i=$Num1; $i<$Num2; i++ ))
 do
-echo "Enter the lower limit which is greater than 1 :"
-read lowerRange
-done
 
-echo "Enter the upper limit :"
-read upperRange
-for Number in `seq $lowerRange $upperRange`
-do
-Result=$(factor $Number | grep $Number | cut -d ":" -f 2 | cut -d " " -f 2)
+	Count=0;
+	for (( j=1; $j<=$i; j++ ))
+	do
 
-if [ "$Result" -eq "$Number" ] 
+		if [ $(($i%$j)) -eq 0 ]
+		then
+			((Count++));
+
+		fi
+	done
+
+
+if [ $Count -eq 2 ]
 then
-echo "$Number is prime" 
-((Temp++))
+		echo $i
+
 fi
 done
-
-echo -e "\n There are $Temp number of prime numbers."
-
